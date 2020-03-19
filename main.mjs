@@ -17,7 +17,7 @@ const getPassword = () => {
         output: process.stdout
       });
 
-    rl.question("Enter your FedEx password: ", (password) => {
+    rl.question("Please enter the password used for ssh login on remote machine: ", (password) => {
         console.log(`${password}`)
         rl.close();
     })
