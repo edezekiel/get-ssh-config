@@ -1,24 +1,17 @@
 export const serverConnections = (parsedConfigFile) => {
-    const connections = generateServerConnections(parsedConfigFile);
-    const validatedConnections = connectionNotNull(connections);
-    return validatedConnections; 
-}
+    let connections = [];
 
-const generateServerConnections = (parsedConfigFile) => {
-    return parsedConfigFile.map(host => {
+    parsedConfigFile.forEach(host => {
 
         const connection = generateConnection(host);
         
-        switch (connectionIsValid(connection)) {
-            case true:
-                return connection
-            case false:
-                console.log(`Unable to create connection for ${connection}`)
-                return null;
-            default:
-                break;
-        }
-    })
+        connectionIsValid(connection) 
+        ? connections.push(connection) 
+        : console.log(`Unable to create connection for Host: ${host.value}`);
+
+    });
+
+    return connections;
 }
 
 const generateConnection = (host) => {
@@ -51,9 +44,4 @@ const connectionIsValid = (connection) => {
     return (connection.User && connection.HostName && connection.IdentityFile)
     ? true 
     : false;
-}
-
-const connectionNotNull = connections => {
-    const validated = connections.filter(connection => connection !== null);
-    return Array.from(validated);
 }
