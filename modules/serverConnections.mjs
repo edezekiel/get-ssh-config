@@ -1,43 +1,59 @@
 export const serverConnections = (parsedConfigFile) => {
     const connections = generateServerConnections(parsedConfigFile);
-    const validatedConnections = validateServerConnections(connections);
+    const validatedConnections = connectionNotNull(connections);
     return validatedConnections; 
 }
 
 const generateServerConnections = (parsedConfigFile) => {
     return parsedConfigFile.map(host => {
-        let userHost = {};
-        host.config.forEach(property => {
-            switch (property.param) {
-                case 'HostName':
-                    userHost.HostName = property.value;
-                    break;
-                case 'User':
-                    userHost.User = property.value;
-                    break;
-                default:
-                    break;
-            }
-        });
-        
-        warnIfInvalidConnection(host, userHost);
 
-        return (!!userHost.User && !!userHost.HostName) 
-            ? `${userHost.User}@${userHost.HostName}` 
-            : null;
+        const connection = generateConnection(host);
+        
+        switch (connectionIsValid(connection)) {
+            case true:
+                return connection
+            case false:
+                console.log(`Unable to create connection for ${connection}`)
+                return null;
+            default:
+                break;
+        }
     })
 }
 
-const warnIfInvalidConnection = (host, userHost) => {
-    if (!userHost.User || !userHost.HostName) {
-        console.warn("Unable to create connection for the following Host:");
-        console.warn(`  Host: ${host.value}`);
-        console.warn(`  User: ${userHost.User}`);
-        console.warn(`  HostName: ${userHost.HostName}`);
-    };
+const generateConnection = (host) => {
+    let connection = {};
+
+    connection.Host = host.value;
+
+    host.config.forEach(property => {
+        switch (property.param) {
+            case 'HostName':
+                connection.HostName = property.value;
+                break;
+            case 'User':
+                connection.User = property.value;
+                break;
+            case 'IdentityFile':
+                connection.IdentityFile = property.value;
+                break;
+            default:
+                break;
+        }
+    });
+    
+    connection.UserHost = `${connection.User}@${connection.HostName}`;
+
+    return connection;
 }
 
-const validateServerConnections = connections => {
+const connectionIsValid = (connection) => {
+    return (connection.User && connection.HostName && connection.IdentityFile)
+    ? true 
+    : false;
+}
+
+const connectionNotNull = connections => {
     const validated = connections.filter(connection => connection !== null);
     return Array.from(validated);
 }
