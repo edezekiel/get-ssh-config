@@ -42,8 +42,8 @@ const flattenHost = host => {
     return flatHost;
 }
 
-const flatHostIsValid = connection => {
-    return (connection.User && connection.HostName && connection.IdentityFile)
+const flatHostIsValid = flatHost => {
+    return (flatHost.User && flatHost.HostName && flatHost.IdentityFile)
     ? true 
     : false;
 }
