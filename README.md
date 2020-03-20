@@ -4,13 +4,15 @@ Get Hosts From Local SSH Config File
 # Usage
 
 ```javascript
-import getSSHConfig from 'ssh-config';
+import { getSSHConfig } from 'get-ssh-config';
 
 const printHosts = () => {
 
   console.log(getSSHConfig());
 
 }
+
+printHosts();
 ```
 
 Returns an array of "hosts" derived from the config file:
