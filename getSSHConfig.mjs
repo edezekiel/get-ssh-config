@@ -1,4 +1,4 @@
-import { parsedConfigFile } from './parsedConfigFile.mjs';
+import { parsedConfigFile } from './modules/parsedConfigFile.mjs';
 
 export const getSSHConfig = () => {
     let hosts = [];
@@ -10,7 +10,6 @@ export const getSSHConfig = () => {
         flatHostIsValid(flatHost) 
         ? hosts.push(flatHost) 
         : console.log(`Unable to create host: ${host.value}`);
-
     });
 
     return hosts;
