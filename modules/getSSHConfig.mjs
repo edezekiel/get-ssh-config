@@ -5,11 +5,11 @@ export const getSSHConfig = () => {
 
     parsedConfigFile.forEach(host => {
 
-        const connection = flattenHost(host);
+        const flatHost = flattenHost(host);
         
-        flatHostIsValid(connection) 
-        ? hosts.push(connection) 
-        : console.log(`Unable to create connection for Host: ${host.value}`);
+        flatHostIsValid(flatHost) 
+        ? hosts.push(flatHost) 
+        : console.log(`Unable to create host: ${host.value}`);
 
     });
 
@@ -17,29 +17,29 @@ export const getSSHConfig = () => {
 }
 
 const flattenHost = host => {
-    let connection = {};
+    let flatHost = {};
 
-    connection.Host = host.value;
+    flatHost.Host = host.value;
 
     host.config.forEach(property => {
         switch (property.param) {
             case 'HostName':
-                connection.HostName = property.value;
+                flatHost.HostName = property.value;
                 break;
             case 'User':
-                connection.User = property.value;
+                flatHost.User = property.value;
                 break;
             case 'IdentityFile':
-                connection.IdentityFile = property.value;
+                flatHost.IdentityFile = property.value;
                 break;
             default:
                 break;
         }
     });
     
-    connection.UserHost = `${connection.User}@${connection.HostName}`;
+    flatHost.UserHost = `${flatHost.User}@${flatHost.HostName}`;
 
-    return connection;
+    return flatHost;
 }
 
 const flatHostIsValid = connection => {
