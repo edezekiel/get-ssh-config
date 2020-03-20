@@ -3,11 +3,11 @@ import readline from 'readline';
 import process from 'process';
 
 const main = () => {
-    const connections = getSSHConfig();
-    console.log(connections);
+    const hosts = getSSHConfig();
+    console.log(hosts);
 
-    getPassword();
-    return connections;
+    //getPassword();
+    return hosts;
 }
 
 const getPassword = () => {
