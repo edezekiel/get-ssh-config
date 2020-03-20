@@ -11,7 +11,7 @@ export const getSSHConfig = () => {
         ? hosts.push(flatHost) 
         : console.log(`Unable to create host: ${host.value}`);
     });
-
+    
     return hosts;
 }
 
