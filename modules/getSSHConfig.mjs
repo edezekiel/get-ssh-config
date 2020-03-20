@@ -5,9 +5,9 @@ export const getSSHConfig = () => {
 
     parsedConfigFile.forEach(host => {
 
-        const connection = generateConnection(host);
+        const connection = flattenHost(host);
         
-        connectionIsValid(connection) 
+        flatHostIsValid(connection) 
         ? hosts.push(connection) 
         : console.log(`Unable to create connection for Host: ${host.value}`);
 
@@ -16,7 +16,7 @@ export const getSSHConfig = () => {
     return hosts;
 }
 
-const generateConnection = host => {
+const flattenHost = host => {
     let connection = {};
 
     connection.Host = host.value;
@@ -42,7 +42,7 @@ const generateConnection = host => {
     return connection;
 }
 
-const connectionIsValid = connection => {
+const flatHostIsValid = connection => {
     return (connection.User && connection.HostName && connection.IdentityFile)
     ? true 
     : false;
