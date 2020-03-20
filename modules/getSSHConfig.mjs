@@ -1,4 +1,6 @@
-export const getSSHConfig = (parsedConfigFile) => {
+import { parsedConfigFile } from './parsedConfigFile.mjs';
+
+export const getSSHConfig = () => {
     let connections = [];
 
     parsedConfigFile.forEach(host => {
