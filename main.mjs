@@ -1,10 +1,10 @@
-import { serverConnections } from './modules/serverConnections.mjs';
+import { getSSHConfig } from './modules/getSSHConfig.mjs';
 import { parsedConfigFile } from './modules/parsedConfigFile.mjs';
 import readline from 'readline';
 import process from 'process';
 
 const main = () => {
-    const connections = serverConnections(parsedConfigFile);
+    const connections = getSSHConfig(parsedConfigFile);
     console.log(connections);
 
     getPassword();

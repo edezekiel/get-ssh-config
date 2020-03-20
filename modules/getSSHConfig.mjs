@@ -1,4 +1,4 @@
-export const serverConnections = (parsedConfigFile) => {
+export const getSSHConfig = (parsedConfigFile) => {
     let connections = [];
 
     parsedConfigFile.forEach(host => {
