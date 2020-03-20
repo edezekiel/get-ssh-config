@@ -1,22 +1,22 @@
 import { parsedConfigFile } from './parsedConfigFile.mjs';
 
 export const getSSHConfig = () => {
-    let connections = [];
+    let hosts = [];
 
     parsedConfigFile.forEach(host => {
 
         const connection = generateConnection(host);
         
         connectionIsValid(connection) 
-        ? connections.push(connection) 
+        ? hosts.push(connection) 
         : console.log(`Unable to create connection for Host: ${host.value}`);
 
     });
 
-    return connections;
+    return hosts;
 }
 
-const generateConnection = (host) => {
+const generateConnection = host => {
     let connection = {};
 
     connection.Host = host.value;
@@ -42,7 +42,7 @@ const generateConnection = (host) => {
     return connection;
 }
 
-const connectionIsValid = (connection) => {
+const connectionIsValid = connection => {
     return (connection.User && connection.HostName && connection.IdentityFile)
     ? true 
     : false;
