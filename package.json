@@ -1,0 +1,27 @@
+{
+  "name": "get-ssh-config",
+  "version": "1.0.0",
+  "description": "Get Hosts From Local SSH Config File",
+  "main": "index.js",
+  "dependencies": {
+    "ssh-config": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edezekiel/get-ssh-config.git"
+  },
+  "keywords": [
+    "ssh",
+    "config"
+  ],
+  "author": "Edward Ezekiel (https://www.edezekiel.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edezekiel/get-ssh-config/issues"
+  },
+  "homepage": "https://github.com/edezekiel/get-ssh-config#readme"
+}

@@ -1,4 +1,4 @@
-import { parsedConfigFile } from './modules/parsedConfigFile.mjs';
+import { parsedConfigFile } from './src/parsedConfigFile.mjs';
 
 export const getSSHConfig = () => {
     let hosts = [];
