@@ -1,7 +1,5 @@
 import { parseConfigFile } from './src/parseConfigFile.mjs';
 
-class ConfigParseError extends Error {};
-
 export const getSSHConfig = () => {
 
     try {
@@ -20,11 +18,7 @@ export const getSSHConfig = () => {
         
         return hosts;
     } catch (err) {
-        if (err.code === 'ENOENT') {
-            throw err
-        } else {
-            throw new ConfigParseError("Unable to parse ssh config file.");
-        }    
+        throw err;
     }
 }
 
