@@ -5,21 +5,26 @@ export const getSSHConfig = () => {
     try {
         let parsedConfigFile = parseConfigFile();
 
-        let hosts = [];
+        return generateHosts(parsedConfigFile);
 
-        parsedConfigFile.forEach(host => {
-    
-            const flatHost = flattenHost(host);
-            
-            flatHostIsValid(flatHost) 
-            ? hosts.push(flatHost) 
-            : console.log(`Unable to create host: ${host.value}`);
-        });
-        
-        return hosts;
     } catch (err) {
         throw err;
     }
+}
+
+export const generateHosts = parsedConfigFile => {
+    let hosts = [];
+
+    parsedConfigFile.forEach(host => {
+
+        const flatHost = flattenHost(host);
+        
+        flatHostIsValid(flatHost) 
+        ? hosts.push(flatHost) 
+        : console.log(`Unable to create host: ${host.value}`);
+    });
+    
+    return hosts;
 }
 
 const flattenHost = host => {
