@@ -1,6 +1,6 @@
 {
   "name": "get-ssh-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get Hosts From Local SSH Config File",
   "main": "index.mjs",
   "dependencies": {
