@@ -1,18 +1,26 @@
-import { parsedConfigFile } from './src/parsedConfigFile.mjs';
+import { parseConfigFile } from './src/parseConfigFile.mjs';
 
 export const getSSHConfig = () => {
-    let hosts = [];
 
-    parsedConfigFile.forEach(host => {
+    try {
+        let parsedConfigFile = parseConfigFile();
 
-        const flatHost = flattenHost(host);
-        
-        flatHostIsValid(flatHost) 
-        ? hosts.push(flatHost) 
-        : console.log(`Unable to create host: ${host.value}`);
-    });
+        let hosts = [];
+
+        parsedConfigFile.forEach(host => {
     
-    return hosts;
+            const flatHost = flattenHost(host);
+            
+            flatHostIsValid(flatHost) 
+            ? hosts.push(flatHost) 
+            : console.log(`Unable to create host: ${host.value}`);
+        });
+        
+        return hosts;
+    } catch (err) {
+        console.log("Unable to parse ssh config file.");
+        throw err
+    }
 }
 
 const flattenHost = host => {
@@ -46,3 +54,5 @@ const flatHostIsValid = flatHost => {
     ? true 
     : false;
 }
+
+console.log(getSSHConfig())
