@@ -54,5 +54,3 @@ const flatHostIsValid = flatHost => {
     ? true 
     : false;
 }
-
-console.log(getSSHConfig())
