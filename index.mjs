@@ -33,22 +33,8 @@ const flattenHost = host => {
     flatHost.Host = host.value;
 
     host.config.forEach(property => {
-        switch (property.param) {
-            case 'HostName':
-                flatHost.HostName = property.value;
-                break;
-            case 'User':
-                flatHost.User = property.value;
-                break;
-            case 'IdentityFile':
-                flatHost.IdentityFile = property.value;
-                break;
-            default:
-                break;
-        }
+        flatHost[property.param] = property.value
     });
-    
-    flatHost.UserHost = `${flatHost.User}@${flatHost.HostName}`;
 
     return flatHost;
 }
