@@ -23,14 +23,12 @@ Returns an array of "hosts" derived from the config file:
      HostName: 'app1.test.matrix.com',
      User: 'keanu',
      IdentityFile: '~/.ssh/id_rsa',
-     UserHost: 'keanu@app1.test.matrix.com'
   },
   {
      Host: [ 'prod' ],
      HostName: 'app1.prod.matrix.com',
      User: 'keanu',
      IdentityFile: '~/.ssh/id_rsa',
-     UserHost: 'keanu@app1.prod.matrix.com'
   }
 ]
 ```
