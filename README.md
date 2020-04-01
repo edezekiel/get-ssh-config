@@ -1,7 +1,14 @@
 # get-ssh-config
+
 Get Hosts From Local SSH Config File
 
-# Usage
+## Usage
+
+```shell
+  node --experimental-modules index.js
+```
+
+Or
 
 ```javascript
 import { getSSHConfig } from 'get-ssh-config';
@@ -16,6 +23,7 @@ printHosts();
 ```
 
 Returns an array of "hosts" derived from the config file:
+
 ```javascript
 [
   {
@@ -33,9 +41,9 @@ Returns an array of "hosts" derived from the config file:
 ]
 ```
 
-# The SSH Config File
+## The SSH Config File
 
-This package assumes that you have a properly formatted file named `config` 
+This package assumes that you have a properly formatted file named `config`
 at `~/.ssh/config` on your local machine.
 
 See [ssh.com/ssh/config](https://www.ssh.com/ssh/config) and [cyjake ssh-config](https://github.com/cyjake/ssh-config)
