@@ -1,8 +1,11 @@
-import { parseConfigFile } from './src/parseConfigFile.js';
+import fs from 'fs';
+import path from 'path';
+import SSHConfig from 'ssh-config';
 
 export const getSSHConfig = () => {
     try {
-        let parsedConfigFile = parseConfigFile();
+        const configPath = path.join(process.env.HOME, '/.ssh/config');
+        const parsedConfigFile = parseConfigFile(configPath);
         return generateHosts(parsedConfigFile);
     } catch (err) {
         throw err;
@@ -25,4 +28,13 @@ const flattenHost = host => {
         flatHost[property.param] = property.value
     });
     return flatHost;
+}
+
+export const parseConfigFile = configPath => {
+    try {
+        const config = fs.readFileSync(configPath, 'utf8');
+        return SSHConfig.parse(config.toString());
+    } catch (err) {
+        throw err;
+    }
 }
