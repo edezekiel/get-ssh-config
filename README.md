@@ -5,7 +5,7 @@ Get Hosts From Local SSH Config File
 ## Usage
 
 ```shell
-  node --experimental-modules index.js
+  node --experimental-modules ./dist/index.js
 ```
 
 Or
